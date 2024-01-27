@@ -5,11 +5,12 @@ import com.wecp.progressive.entity.Customers;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
 
-    private static List<Customers> customersList = new ArrayList<>();
+    private static List<Customers> customerList = new ArrayList<>();
 
     private CustomerDAO customerDAO;
 
@@ -48,21 +49,24 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public List<Customers> getAllCustomersFromArrayList() {
-        return null;
+        return customerList;
     }
 
     @Override
     public List<Customers> addCustomersToArrayList(Customers customers) {
-        return null;
+        customerList.add(customers);
+        return customerList;
     }
 
     @Override
     public List<Customers> getAllCustomersSortedByNameFromArrayList(){
-        return null;
+        List<Customers> sortedCustomers = customerList;
+        Collections.sort(sortedCustomers);
+        return sortedCustomers;
     }
 
     @Override
     public void emptyArrayList() {
-        
+        customerList = new ArrayList<>();
     }
 }

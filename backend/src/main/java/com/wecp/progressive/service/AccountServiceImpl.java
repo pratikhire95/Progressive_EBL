@@ -1,21 +1,22 @@
 package com.wecp.progressive.service;
-
-
 import com.wecp.progressive.dao.AccountDAO;
 import com.wecp.progressive.entity.Accounts;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import java.util.Comparator;
 import java.util.List;
 
 public class AccountServiceImpl implements AccountService {
 
-    private static List<Accounts> accountsList = new ArrayList<>();
+    private static List<Accounts> accountsList = new ArrayList<Accounts>();
     private AccountDAO accountDAO;
 
     public AccountServiceImpl(AccountDAO accountDAO) {
         this.accountDAO = accountDAO;
     }
+
     @Override
     public List<Accounts> getAllAccounts() throws SQLException {
         return null;
@@ -51,23 +52,27 @@ public class AccountServiceImpl implements AccountService {
     public List<Accounts> getAccountsByUser(int userId) throws SQLException{
         return null;
     }
+
     @Override
     public List<Accounts> getAllAccountsSortedByBalanceFromArrayList() {
-        return null;
+        List<Accounts> sortedAccountsList = accountsList;
+        sortedAccountsList.sort(Comparator.comparingDouble(Accounts::getBalance));
+        return sortedAccountsList;
     }
 
     @Override
     public void emptyArrayList() {
-        
+        accountsList = new ArrayList<>();
     }
 
     @Override
     public List<Accounts> getAllAccountsFromArrayList() {
-        return null;
+        return accountsList;
     }
     
     @Override
     public List<Accounts> addAccountToArrayList(Accounts accounts) {
-        return null;
+        accountsList.add(accounts);
+        return accountsList;
     }
 }

@@ -1,31 +1,36 @@
 package com.wecp.progressive.entity;
-import java.util.Comparator;
-public class Accounts implements Comparable<Accounts>, Comparator<Accounts>{
-    private int account_id;
-    private int customer_id;
+
+
+public class Accounts implements Comparable<Accounts>{
+    private int accountId;
+    private int customerId;
     private double balance;
 
     public Accounts() {
     }
 
-    public Accounts(int account_id, int customer_id, double balance) {
-        this.account_id = account_id;
-        this.customer_id = customer_id;
+    public Accounts(int accountId, int customerId, double balance) {
+        this.accountId = accountId;
+        this.customerId = customerId;
         this.balance = balance;
     }
     
-    public int getAccount_id() {
-        return account_id;
+    public int getAccountId() {
+        return accountId;
     }
-    public void setAccount_id(int account_id) {
-        this.account_id = account_id;
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
     }
-    public int getCustomer_id() {
-        return customer_id;
+
+    public int getCustomerId() {
+        return customerId;
     }
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
+
     public double getBalance() {
         return balance;
     }
@@ -34,21 +39,7 @@ public class Accounts implements Comparable<Accounts>, Comparator<Accounts>{
     }
     
     @Override
-    public int compare(Accounts acc0, Accounts acc1){
-        if(acc0.getBalance() < acc1.balance){
-            return -1;
-        }else if(acc0.getBalance() > acc1.balance){
-            return 1;
-        }
-        return 0;
-    }
-    @Override
-    public int  compareTo(Accounts acc2){
-        if(this.getBalance() < acc2.getBalance()){
-            return -1;
-        }else if(this.balance > acc2.getBalance()){
-            return 1;
-        }
-        return 0;
+    public int compareTo(Accounts acc1){
+        return Double.compare(this.getBalance(), acc1.getBalance());
     }   
 }

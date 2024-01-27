@@ -1,7 +1,7 @@
 package com.wecp.progressive.entity;
 
 public class Customers implements Comparable<Customers>{
-    private int customer_id;
+    private int customerId;
     private String name;
     private String email;
     private String username;
@@ -10,20 +10,20 @@ public class Customers implements Comparable<Customers>{
 
     public Customers() {
     }
-    
-    public Customers(int customer_id, String name, String email, String username, String password, String role) {
-        this.customer_id = customer_id;
+
+
+    public Customers(int customerId, String name, String email, String username, String password) {
+        this.customerId = customerId;
         this.name = name;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.role = role;
     }
-    public int getCustomer_id() {
-        return customer_id;
+    public int getCustomerId() {
+        return customerId;
     }
-    public void setCustomer_id(int customer_id) {
-        this.customer_id = customer_id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
     public String getName() {
         return name;
@@ -55,9 +55,10 @@ public class Customers implements Comparable<Customers>{
     public void setRole(String role) {
         this.role = role;
     }
+    
     @Override
-    public int compareTo(Customers obj) {
-        return this.getName().compareTo(obj.getName()); 
+    public int compareTo(Customers otherCustomers) {
+        return this.getName().compareTo(otherCustomers.getName()); 
     }
     
 }
