@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-
+@RestController
 public class AccountController {
+
+    
 
 
     public ResponseEntity<List<Accounts>> getAllAccounts() {
