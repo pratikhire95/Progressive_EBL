@@ -2,17 +2,14 @@
 package com.wecp.progressive.service;
 import com.wecp.progressive.dao.AccountDAO;
 import com.wecp.progressive.entity.Accounts;
-import com.wecp.progressive.repository.AccountRepository;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class AccountServiceImpl implements AccountService {
+
     private AccountDAO accountDAO;
     
 
