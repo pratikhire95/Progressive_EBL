@@ -1,4 +1,5 @@
 package com.wecp.progressive.service;
+
 import com.wecp.progressive.dao.TransactionDAO;
 import com.wecp.progressive.entity.Transactions;
 import java.sql.SQLException;
@@ -39,7 +40,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<Transactions> getTransactionsByCustomerId(int customerId) throws SQLException {
-        // TODO Auto-generated method stub
+       
         return null;
     }
 }

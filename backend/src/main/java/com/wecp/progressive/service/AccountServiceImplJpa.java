@@ -1,76 +1,88 @@
 package com.wecp.progressive.service;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class AccountServiceImplJpa {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    // private List<Accounts> listAccount = new ArrayList<>();
+import com.wecp.progressive.entity.Accounts;
+import com.wecp.progressive.repository.AccountRepository;
 
-    // @Override
-    // public List<Accounts> getAllAccounts() throws SQLException {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
+@Service
+public class AccountServiceImplJpa implements AccountService {
 
-    // @Override
-    // public List<Accounts> getAccountsByUser(int userId) throws SQLException {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
+    @Autowired
+    private AccountRepository accountRepository;
 
-    // @Override
-    // public Accounts getAccountById(int accountId) throws SQLException {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
+    private static List<Accounts> accountsList=new ArrayList<>();
+    public AccountServiceImplJpa(AccountRepository accountRepository){
+        this.accountRepository=accountRepository;
+    }
 
-    // @Override
-    // public int addAccount(Accounts accounts) throws SQLException {
-    //     // TODO Auto-generated method stub
-    //     return -1;
-    // }
+    @Override
+    public List<Accounts> getAllAccounts() throws SQLException {
+        return accountRepository.findAll();
+    }
 
-    // @Override
-    // public void updateAccount(Accounts accounts) throws SQLException {
-    //     // TODO Auto-generated method stub
-       
-    // }
+    @Override
+    public List<Accounts> getAccountsByUser(int userId) throws SQLException {
+        return accountRepository.findByCustomerId(userId);
+    }
 
-    // @Override
-    // public void deleteAccount(int accountId) throws SQLException {
-    //     // TODO Auto-generated method stub
-    // }
+    @Override
+    public Accounts getAccountById(int accountId) throws SQLException {
+        return accountRepository.findById(accountId).get();
+    }
 
-    // @Override
-    // public List<Accounts> getAllAccountsSortedByBalance() throws SQLException {
-    //     // TODO Auto-generated method stub
-    //     throw new UnsupportedOperationException("Unimplemented method 'getAllAccountsSortedByBalance'");
-    // }
+    @Override
+    public int addAccount(Accounts accounts) throws SQLException {
+       accountRepository.save(accounts);
+       return accounts.getAccountId();
+    }
 
-    // @Override
-    // public List<Accounts> getAllAccountsFromArrayList() {
-    //     // TODO Auto-generated method stub
-    //     return null;
-    // }
+    @Override
+    public void updateAccount(Accounts accounts) throws SQLException {
+        accountRepository.findById(accounts.getAccountId()).map(account->{
+            account.setCustomerId(accounts.getCustomerId());
+            account.setBalance(accounts.getBalance());
+            return accountRepository.save(account);
+        });
+    }
 
-    // @Override
-    // public List<Accounts> addAccountToArrayList(Accounts accounts) {
-    //     // TODO Auto-generated method stub
-    //     listAccount.add(accounts);
-    //     return listAccount;
-    // }
+    @Override
+    public void deleteAccount(int accountId) throws SQLException {
+        accountRepository.deleteById(accountId);
+    }
 
-    // @Override
-    // public List<Accounts> getAllAccountsSortedByBalanceFromArrayList() {
-    //     // TODO Auto-generated method stub
-    //     List<Accounts> sortedList = listAccount;
-    //     Collections.sort(sortedList);
-    //     return sortedList;
-    // }
+    @Override
+    public List<Accounts> getAllAccountsSortedByBalance() throws SQLException {
+        return null;
+    }
 
-    // @Override
-    // public void emptyArrayList() {
-    //     // TODO Auto-generated method stub
-    //     listAccount = new ArrayList<>();
-    // }
+    @Override
+    public List<Accounts> getAllAccountsFromArrayList() {
+        return accountsList;
+    }
+
+    @Override
+    public List<Accounts> addAccountToArrayList(Accounts accounts) {
+        accountsList.add(accounts);
+        return accountsList;
+    }
+
+    @Override
+    public List<Accounts> getAllAccountsSortedByBalanceFromArrayList() {
+        List<Accounts> sortedAccounts= accountsList;
+        Collections.sort(sortedAccounts);
+        return sortedAccounts;
+    }
+
+    @Override
+    public void emptyArrayList() {
+        accountsList=new ArrayList<>();
+    }
     
 }

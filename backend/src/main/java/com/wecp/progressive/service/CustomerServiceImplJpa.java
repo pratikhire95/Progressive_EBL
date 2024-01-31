@@ -1,78 +1,89 @@
 package com.wecp.progressive.service;
-
+ 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import com.wecp.progressive.entity.Customers;
+import com.wecp.progressive.repository.CustomerRepository;
+ 
 @Service
 public class CustomerServiceImplJpa implements CustomerService{
-
-    private List<Customers> listCustomer = new ArrayList<>();
+   
+    @Autowired
+    private CustomerRepository customerRepository;
+   
+    private static List<Customers> customersList = new ArrayList<>();
+    public CustomerServiceImplJpa(CustomerRepository customerRepository){
+        this.customerRepository=customerRepository;
+    }
+ 
+ 
     @Override
     public List<Customers> getAllCustomers() throws SQLException {
-        return null;
-        
+        return customerRepository.findAll();
     }
-
+ 
     @Override
     public Customers getCustomerById(int customerId) throws SQLException {
-        return null;
-       
+        return customerRepository.findById(customerId).get();
     }
-
+ 
     @Override
     public int addCustomer(Customers customers) throws SQLException {
-        // TODO Auto-generated method stub
-        return -1;
+       
+       customerRepository.save(customers);
+       return customers.getCustomerId();
     }
-
+ 
     @Override
     public void updateCustomer(Customers customers) throws SQLException {
-        // TODO Auto-generated method stub
+        customerRepository.findById(customers.getCustomerId()).map(customer ->{
+            customer.setName(customers.getName());
+            customer.setEmail(customers.getEmail());
+            customer.setUsername(customers.getUsername());
+            customer.setPassword(customers.getPassword());
+            return customerRepository.save(customer);
+        });
        
     }
-
+ 
     @Override
     public void deleteCustomer(int customerId) throws SQLException {
-        // TODO Auto-generated method stub
-       
+       customerRepository.deleteById(customerId);
     }
-
+ 
     @Override
     public List<Customers> getAllCustomersSortedByName() throws SQLException {
-        // TODO Auto-generated method stub
-       return null;
+       
+        return null;
     }
-
+ 
     @Override
     public List<Customers> getAllCustomersFromArrayList() {
-        // TODO Auto-generated method stub
-        return listCustomer;
+        return customersList;
     }
-
+ 
     @Override
     public List<Customers> addCustomersToArrayList(Customers customers) {
-        // TODO Auto-generated method stub
-        listCustomer.add(customers);
-        return listCustomer;
+        customersList.add(customers);
+        return customersList;
     }
-
+ 
     @Override
-    public List<Customers> getAllCustomersSortedByNameFromArrayList() {
-        // TODO Auto-generated method stub
-       List<Customers> sortedList = listCustomer;
-       Collections.sort(sortedList);
-       return sortedList;
+    public List<Customers> getAllCustomersSortedByNameFromArrayList(){
+        List<Customers> sortedCustomers = customersList;
+        Collections.sort(sortedCustomers);
+        return sortedCustomers;
     }
-
+ 
     @Override
     public void emptyArrayList() {
-        // TODO Auto-generated method stub
-        listCustomer = new ArrayList<>();
+        customersList = new ArrayList<>();
     }
-    
 }
