@@ -9,5 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.wecp.progressive.entity.Accounts;
 @Repository
 public interface AccountRepository extends JpaRepository<Accounts, Integer> {
-    public List<Accounts> findByCustomerId(int userId)throws SQLException;
+    List<Accounts> getAccountsByCustomerId(int customerId);
+    Accounts findByAccountId(int accountId);
+    List<Accounts> findByOrderByBalance();
 }
