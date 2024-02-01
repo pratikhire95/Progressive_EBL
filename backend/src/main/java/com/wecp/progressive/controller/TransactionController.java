@@ -1,5 +1,6 @@
 package com.wecp.progressive.controller;
 
+import com.wecp.progressive.entity.Accounts;
 import com.wecp.progressive.entity.Transactions;
 import com.wecp.progressive.service.AccountServiceImplJpa;
 import com.wecp.progressive.service.TransactionService;
@@ -18,7 +19,7 @@ public class TransactionController {
 
     private final TransactionService transactionService;
 
-    
+    @Autowired
     public TransactionController(@Qualifier("transactionServiceImplJpa") TransactionService transactionService) {
         this.transactionService = transactionService;
     }

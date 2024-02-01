@@ -54,7 +54,7 @@ public class AccountDAOImpl implements AccountDAO {
 
         try {
             connection = DatabaseConnectionManager.getConnection();
-            String sql = "SELECT * FROM accounts where customer_id = '" + customer_id + "'";
+            String sql = "SELECT * FROM accounts where customer_id = '"+customer_id+"'";
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery();
 
@@ -117,7 +117,9 @@ public class AccountDAOImpl implements AccountDAO {
             connection = DatabaseConnectionManager.getConnection();
             String sql = "INSERT INTO accounts (customer_id, balance) VALUES (?, ?)";
             statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-            statement.setInt(1, accounts.getCustomerId());
+
+            //Comment previous set field before entity associations
+            // statement.setInt(1, accounts.getCustomerId());
             statement.setDouble(2, accounts.getBalance());
             statement.executeUpdate();
 
@@ -138,6 +140,7 @@ public class AccountDAOImpl implements AccountDAO {
 
     }
 
+
     @Override
     public void updateAccount(Accounts accounts) throws SQLException {
         Connection connection = null;
@@ -147,7 +150,9 @@ public class AccountDAOImpl implements AccountDAO {
             connection = DatabaseConnectionManager.getConnection();
             String sql = "UPDATE accounts SET customer_id = ?, balance = ? WHERE account_id = ?";
             statement = connection.prepareStatement(sql);
-            statement.setInt(1, accounts.getCustomerId());
+
+            //Comment previous set field before entity associations
+            // statement.setInt(1, accounts.getCustomerId());
             statement.setDouble(2, accounts.getBalance());
             statement.setInt(3, accounts.getAccountId());
             statement.executeUpdate();
@@ -181,5 +186,6 @@ public class AccountDAOImpl implements AccountDAO {
             }
         }
     }
+
 
 }

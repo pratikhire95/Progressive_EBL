@@ -3,6 +3,7 @@ package com.wecp.progressive.controller;
 import com.wecp.progressive.entity.Accounts;
 import com.wecp.progressive.service.AccountService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ public class AccountController {
 
     private final AccountService accountService;
 
+    @Autowired
     public AccountController(@Qualifier("accountServiceImplJpa") AccountService accountService) {
         this.accountService = accountService;
     }
