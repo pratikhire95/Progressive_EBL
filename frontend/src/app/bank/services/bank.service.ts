@@ -1,9 +1,9 @@
 
 import { environment } from "src/environments/environment";
-import { Transaction } from "../types/transaction";
+import { Transaction } from "../types/Transaction";
 import { Observable } from "rxjs";
-import { Customer } from "../types/customer";
-import { Account } from "../types/account";
+import { Customer } from "../types/Customer";
+import { Account } from "../types/Account";
 
 
 export class BankService {
