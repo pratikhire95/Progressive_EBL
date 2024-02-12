@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { CustomerTS } from '../../types/Customer';
 import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
@@ -42,4 +43,10 @@ export class CustomersComponent implements OnInit {
 
 
 
+=======
+
+export class CustomerComponent  {
+
+  
+>>>>>>> d85ecb19aa8aea7b81a2dfc35bdeb9875e00d89d
 }

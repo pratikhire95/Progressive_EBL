@@ -7,8 +7,13 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test2": "protractor protractor.conf.js",
+<<<<<<< HEAD
     "jest": "jest",
     "test": "ng test"
+=======
+    "test": "ng test",
+    "backend": ""
+>>>>>>> d85ecb19aa8aea7b81a2dfc35bdeb9875e00d89d
   },
   "private": true,
   "dependencies": {
@@ -35,8 +40,11 @@
     "@types/jasmine": "~4.0.0",
     "jasmine-core": "~4.3.0",
     "jasmine-spec-reporter": "^7.0.0",
+<<<<<<< HEAD
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
+=======
+>>>>>>> d85ecb19aa8aea7b81a2dfc35bdeb9875e00d89d
     "jest-preset-angular": "^13.0.1",
     "json-server": "^0.17.3",
     "karma": "~6.4.0",

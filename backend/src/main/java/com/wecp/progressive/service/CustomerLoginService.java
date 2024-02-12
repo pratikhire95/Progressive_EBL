@@ -70,4 +70,8 @@ public class CustomerLoginService implements UserDetailsService {
                 new ArrayList<>()
         );
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> d85ecb19aa8aea7b81a2dfc35bdeb9875e00d89d

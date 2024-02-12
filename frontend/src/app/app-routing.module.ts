@@ -1,8 +1,12 @@
 import { NgModule } from "@angular/core";
+<<<<<<< HEAD
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+=======
+import { RouterModule, Routes } from "@angular/router";
+>>>>>>> d85ecb19aa8aea7b81a2dfc35bdeb9875e00d89d
 
 const routes: Routes = [
   {
@@ -22,6 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+<<<<<<< HEAD
   declarations: [
     AppComponent // Declare AppComponent
   ],
@@ -33,3 +38,9 @@ const routes: Routes = [
   bootstrap: [AppComponent] // Bootstrap AppComponent
 })
 export class AppRoutingModule {}
+=======
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+>>>>>>> d85ecb19aa8aea7b81a2dfc35bdeb9875e00d89d
